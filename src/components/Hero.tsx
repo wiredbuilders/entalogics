@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { ArrowRight, Play, Code, Cloud, Database, Cpu, Shield, GitBranch, PenTool, Star, Chrome, Github, TerminalSquare, Globe, UserCheck, Lock, Clock, Wallet, Target } from 'lucide-react';
-import { getCalApi } from "@calcom/embed-react";
 import TrustBar from './TrustBar';
+import { getCalApi } from "@calcom/embed-react";
 
 // Enhanced HeroVisual for right side
 const HeroVisual = () => {
