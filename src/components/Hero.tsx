@@ -3,6 +3,7 @@ import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { ArrowRight, Play, Code, Cloud, Database, Cpu, Shield, GitBranch, PenTool, Star, Chrome, Github, TerminalSquare, Globe, UserCheck, Lock, Clock, Wallet, Target } from 'lucide-react';
 import TrustBar from './TrustBar';
 import { getCalApi } from "@calcom/embed-react";
+import "@fontsource/pacifico";
 
 // Enhanced HeroVisual for right side
 const HeroVisual = () => {
@@ -166,10 +167,25 @@ const Hero = () => {
               </span>
             </div>
           {/* Main heading */}
-            <h1 className="text-[clamp(1.8rem,5vw,2.5rem)] font-extrabold text-black dark:text-white leading-tight mb-4 md:mb-6 tracking-tight" style={{ fontFamily: "'Poppins', system-ui, sans-serif" }}>
+            <h1 className="text-[clamp(2.2rem,5vw,3.2rem)] font-extrabold text-black dark:text-white leading-tight mb-4 md:mb-6 tracking-tight" style={{ fontFamily: "'Poppins', 'Montserrat', sans-serif", lineHeight: 1.15 }}>
               <span className="block">Entalogics Gives Your</span>
-              <span className="block">Raw Tech Idea a Life—</span>
-              <span className="block">Built With <span className="text-[#512feb] font-pacifico">Logic</span></span>
+              <span className="block">Raw Tech Idea a Life</span>
+              <span className="block mt-2">
+                <span style={{ marginRight: 8, fontWeight: 700 }}>— Built With</span>
+                <span
+                  style={{
+                    fontFamily: 'Pacifico, cursive',
+                    color: '#512feb',
+                    fontWeight: 700,
+                    fontSize: '1.1em',
+                    letterSpacing: '0.5px',
+                    verticalAlign: 'middle',
+                  }}
+                  className="inline-block align-middle"
+                >
+                  Logic
+                </span>
+              </span>
             </h1>
           {/* Subtitle */}
             <p className="text-[1.125rem] text-black/80 dark:text-white/80 mb-3 md:mb-5 max-w-xl mx-auto md:mx-0 leading-snug font-medium pt-1" style={{ fontFamily: "'Roboto', sans-serif" }}>
