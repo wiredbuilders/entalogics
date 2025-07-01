@@ -7,6 +7,7 @@ import WhyChooseUs from '../src/components/WhyChooseUs';
 import Values from '../src/components/Values';
 import Process from '../src/components/Process';
 import Testimonials from '../src/components/Testimonials';
+import Blog from '../src/components/Blog';
 import FAQ from '../src/components/FAQ';
 import Contact from '../src/components/Contact';
 import CTABanner from '../src/components/CTABanner';
@@ -21,6 +22,7 @@ const HomePage = () => {
       <Values />
       <Process />
       <Testimonials />
+      <Blog />
       <FAQ />
       <CTABanner />
       <Contact />

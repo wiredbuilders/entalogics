@@ -8,6 +8,7 @@ const navItems: { name: string; href: string }[] = [
   { name: 'Process', href: '#process' },
   { name: 'Services', href: '#services' },
   { name: 'Benefits', href: '#benefits' },
+  { name: 'Blog', href: '#blog' },
   { name: 'Plans', href: '#plans' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -42,7 +43,9 @@ const Header = () => {
   };
   
   const handleNavClick = (href: string) => {
-    if (window.location.pathname !== '/') {
+    if (href === '#blog') {
+      window.location.href = '/blog';
+    } else if (window.location.pathname !== '/') {
       window.location.href = `/${href}`;
     } else {
       scrollToSection(href);
