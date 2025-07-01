@@ -5,19 +5,19 @@ import { ChevronDown, Phone, Target, Palette, Code, Shield, Rocket } from 'lucid
 
 const stepVariants = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
-  visible: (i) => ({ opacity: 1, y: 0, scale: 1, transition: { delay: i * 0.25, duration: 0.7, type: 'spring', bounce: 0.18 } }),
+  visible: (i: number) => ({ opacity: 1, y: 0, scale: 1, transition: { delay: i * 0.25, duration: 0.7, type: 'spring', bounce: 0.18 } }),
   exit: { opacity: 0, y: 40, scale: 0.95, transition: { duration: 0.5 } }
 };
 
 const Process = () => {
   const controls = useAnimation();
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.2 });
   const [stepInView, setStepInView] = useState(0);
 
   useEffect(() => {
-    if (!sectionRef.current) return;
     const handleScroll = () => {
+      if (!sectionRef.current) return;
       const sectionTop = sectionRef.current.getBoundingClientRect().top + window.scrollY;
       const scrollY = window.scrollY + window.innerHeight * 0.8;
       let newStep = 0;

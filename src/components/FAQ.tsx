@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { Plus, Minus, ChevronDown, ChevronUp, Mail } from 'lucide-react';
 
 const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [showCookie, setShowCookie] = useState(true);
 
   const { ref, inView } = useInView({
@@ -39,7 +39,7 @@ const FAQ = () => {
     }
   ];
 
-  const toggleFAQ = (index) => {
+  const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 

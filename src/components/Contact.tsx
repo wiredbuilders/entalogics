@@ -11,7 +11,7 @@ const Contact = () => {
   });
 
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  const onSubmit = (data: any) => console.log(data);
 
   const contactInfo = [
     {

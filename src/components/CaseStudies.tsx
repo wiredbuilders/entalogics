@@ -87,12 +87,12 @@ const CaseStudies = () => {
   useEffect(() => {
     const carousel = carouselRef.current;
     if (!carousel) return;
-    let animationFrame;
-    let lastTimestamp = null;
+    let animationFrame: number;
+    let lastTimestamp: number | null = null;
     const speed = 0.4; // px per ms (adjust for slower/faster)
-    function step(timestamp) {
+    function step(timestamp: number) {
       if (isUserInteracting) return;
-      if (lastTimestamp !== null) {
+      if (lastTimestamp !== null && carousel) {
         carousel.scrollLeft += (timestamp - lastTimestamp) * speed;
       }
       lastTimestamp = timestamp;
@@ -156,7 +156,7 @@ const CaseStudies = () => {
             onClick={() => {
               setIsUserInteracting(true);
               if (carouselRef.current) {
-                const card = carouselRef.current.querySelector('.group');
+                const card = carouselRef.current.querySelector('.group') as HTMLDivElement;
                 if (card) carouselRef.current.scrollBy({ left: -card.offsetWidth - 24, behavior: 'smooth' });
               }
               setTimeout(() => setIsUserInteracting(false), 800);
@@ -172,7 +172,7 @@ const CaseStudies = () => {
             onClick={() => {
               setIsUserInteracting(true);
               if (carouselRef.current) {
-                const card = carouselRef.current.querySelector('.group');
+                const card = carouselRef.current.querySelector('.group') as HTMLDivElement;
                 if (card) carouselRef.current.scrollBy({ left: card.offsetWidth + 24, behavior: 'smooth' });
               }
               setTimeout(() => setIsUserInteracting(false), 800);

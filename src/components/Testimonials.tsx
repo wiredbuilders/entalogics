@@ -228,7 +228,16 @@ const testimonials = [
     },
 ];
 
-const TestimonialCard = ({ testimonial }) => (
+interface Testimonial {
+  name: string;
+  role: string;
+  company: string;
+  quote: string;
+  rating: number;
+  avatar: string;
+}
+
+const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => (
   <div className="flex-shrink-0 bg-white/70 dark:bg-white/10 backdrop-blur-lg border border-[#e5e7eb] dark:border-white/20 rounded-xl p-3 md:p-4 flex flex-col items-center shadow-md min-w-[140px] max-w-[140px] md:min-w-[240px] md:max-w-[240px] mx-1 md:mx-2 h-[120px] md:h-[140px] justify-between">
     <div className="flex items-center mb-1">
       {[...Array(Math.floor(testimonial.rating))].map((_, i) => (
@@ -246,20 +255,23 @@ const TestimonialCard = ({ testimonial }) => (
 );
 
 const Testimonials = () => {
-  const marqueeRef = useRef(null);
+  const marqueeRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
   // Mouse/touch drag handlers
-  const handleDragStart = (e) => {
+  const handleDragStart = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     setIsDragging(true);
-    setStartX(e.type === 'touchstart' ? e.touches[0].pageX : e.pageX);
-    setScrollLeft(marqueeRef.current.scrollLeft);
+    const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
+    setStartX(pageX);
+    if (marqueeRef.current) {
+      setScrollLeft(marqueeRef.current.scrollLeft);
+    }
   };
-  const handleDragMove = (e) => {
-    if (!isDragging) return;
-    const x = e.type === 'touchmove' ? e.touches[0].pageX : e.pageX;
+  const handleDragMove = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging || !marqueeRef.current) return;
+    const x = 'touches' in e ? e.touches[0].pageX : e.pageX;
     const walk = (x - startX) * -1; // reverse direction
     marqueeRef.current.scrollLeft = scrollLeft + walk;
   };

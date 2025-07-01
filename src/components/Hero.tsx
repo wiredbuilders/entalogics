@@ -10,7 +10,7 @@ const HeroVisual = () => {
   const rotateX = useTransform(y, [-100, 100], [10, -10]);
   const rotateY = useTransform(x, [-100, 100], [-10, 10]);
 
-  const handleMouseMove = (event) => {
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
@@ -67,10 +67,10 @@ const HeroVisual = () => {
             <Code className="w-7 h-7 text-indigo-600 dark:text-indigo-400 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" />
             <Cloud className="w-7 h-7 text-cyan-600 dark:text-cyan-400 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" />
             <Shield className="w-7 h-7 text-emerald-600 dark:text-emerald-400 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" />
-            <Chrome className="w-7 h-7 text-blue-500 dark:text-blue-400 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" title="Chromium" />
-            <Github className="w-7 h-7 text-gray-800 dark:text-gray-200 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" title="Electron" />
-            <TerminalSquare className="w-7 h-7 text-blue-700 dark:text-blue-300 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" title="C++" />
-            <Cpu className="w-7 h-7 text-purple-600 dark:text-purple-400 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" title="C#" />
+            <Chrome className="w-7 h-7 text-blue-500 dark:text-blue-400 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" />
+            <Github className="w-7 h-7 text-gray-800 dark:text-gray-200 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" />
+            <TerminalSquare className="w-7 h-7 text-blue-700 dark:text-blue-300 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" />
+            <Cpu className="w-7 h-7 text-purple-600 dark:text-purple-400 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" />
           </div>
           {/* Highlight Snaps */}
           <motion.div
