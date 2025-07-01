@@ -29,9 +29,9 @@ const BlogCard = ({ post, index }: { post: BlogPost, index: number }) => {
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         {/* Meta info */}
-        <div className="flex items-center gap-4 text-xs text-gray-600 dark:text-gray-400 mb-3">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs text-gray-600 dark:text-gray-400 mb-3">
           <div className="flex items-center gap-1">
             <User className="w-3 h-3" />
             <span>{post.author}</span>
@@ -47,7 +47,7 @@ const BlogCard = ({ post, index }: { post: BlogPost, index: number }) => {
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 group-hover:text-[#512feb] transition-colors duration-200">
+        <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 group-hover:text-[#512feb] transition-colors duration-200">
           {post.title}
         </h3>
 
@@ -71,7 +71,7 @@ const BlogCard = ({ post, index }: { post: BlogPost, index: number }) => {
 
 const Blog = () => {
   return (
-    <section id="blog" className="relative py-20 bg-gradient-to-b from-white to-gray-50 dark:from-[#0d0d0d] dark:to-black overflow-hidden">
+    <section id="blog" className="relative py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-white to-gray-50 dark:from-[#0d0d0d] dark:to-black overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-[#512feb]/5 rounded-full blur-3xl" />
@@ -80,7 +80,7 @@ const Blog = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -97,7 +97,7 @@ const Blog = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6"
           >
             Our Latest
             <span className="text-[#512feb]"> Blog Posts</span>
@@ -108,7 +108,7 @@ const Blog = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
           >
             Stay updated with the latest trends, insights, and best practices in web development, 
             AI integration, and digital transformation.
@@ -116,8 +116,8 @@ const Blog = () => {
         </div>
 
         {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {blogPosts.map((post, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12">
+          {blogPosts.slice(0, 3).map((post, index) => (
             <BlogCard key={post.id} post={post} index={index} />
           ))}
         </div>
