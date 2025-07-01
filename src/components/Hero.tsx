@@ -167,17 +167,17 @@ const Hero = () => {
               </span>
             </div>
           {/* Main heading */}
-            <h1 className="text-[clamp(2.2rem,5vw,3.2rem)] font-extrabold text-black dark:text-white leading-tight mb-4 md:mb-6 tracking-tight" style={{ fontFamily: "'Poppins', 'Montserrat', sans-serif", lineHeight: 1.15 }}>
+            <h1 className="text-[clamp(1.5rem,3.5vw,2.2rem)] font-bold text-black dark:text-white leading-snug mb-4 md:mb-6 tracking-tight" style={{ fontFamily: "'Poppins', 'Montserrat', sans-serif", lineHeight: 1.22 }}>
               <span className="block">Entalogics Gives Your</span>
               <span className="block">Raw Tech Idea a Life</span>
               <span className="block mt-2">
-                <span style={{ marginRight: 8, fontWeight: 700 }}>— Built With</span>
+                <span style={{ marginRight: 8, fontWeight: 600, fontSize: '0.95em' }}>— Built With</span>
                 <span
                   style={{
                     fontFamily: 'Pacifico, cursive',
                     color: '#512feb',
                     fontWeight: 700,
-                    fontSize: '1.1em',
+                    fontSize: '1.05em',
                     letterSpacing: '0.5px',
                     verticalAlign: 'middle',
                   }}
