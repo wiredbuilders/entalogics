@@ -645,4 +645,6 @@
 
 .dark .prose tbody td {
   color: #d1d5db;
-} 
+}
+
+.font-pacifico { font-family: 'Pacifico', cursive; } 

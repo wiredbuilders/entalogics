@@ -166,10 +166,10 @@ const Hero = () => {
               </span>
             </div>
           {/* Main heading */}
-            <h1 className="text-[clamp(1.8rem,5vw,2.5rem)] font-extrabold text-black dark:text-white leading-tight mb-4 md:mb-6 tracking-tight" style={{ fontFamily: "'Poppins', 'Montserrat', sans-serif" }}>
+            <h1 className="text-[clamp(1.8rem,5vw,2.5rem)] font-extrabold text-black dark:text-white leading-tight mb-4 md:mb-6 tracking-tight" style={{ fontFamily: "'Poppins', system-ui, sans-serif" }}>
               <span className="block">Entalogics Gives Your</span>
               <span className="block">Raw Tech Idea a Life—</span>
-              <span className="block">Built With <span style={{ fontFamily: 'Pacifico, cursive' }} className="text-[#512feb]">Logic</span></span>
+              <span className="block">Built With <span className="text-[#512feb] font-pacifico">Logic</span></span>
             </h1>
           {/* Subtitle */}
             <p className="text-[1.125rem] text-black/80 dark:text-white/80 mb-3 md:mb-5 max-w-xl mx-auto md:mx-0 leading-snug font-medium pt-1" style={{ fontFamily: "'Roboto', sans-serif" }}>
