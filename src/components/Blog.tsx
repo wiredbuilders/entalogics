@@ -1,143 +1,107 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, User, ArrowRight, Tag, BookOpen } from 'lucide-react';
 import Link from 'next/link';
-import { blogPosts, BlogPost } from '../data/blogData';
-
-const BlogCard = ({ post, index }: { post: BlogPost, index: number }) => {
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      viewport={{ once: true }}
-      className="group relative bg-white/70 dark:bg-black/60 backdrop-blur-xl rounded-2xl border border-white/20 dark:border-gray-700/50 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-    >
-      {/* Image */}
-      <div className="relative h-48 overflow-hidden">
-        <img
-          src={post.image}
-          alt={post.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-        <div className="absolute top-4 left-4">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-[#512feb]/90 text-white backdrop-blur-sm">
-            {post.category}
-          </span>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-4 sm:p-6">
-        {/* Meta info */}
-        <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs text-gray-600 dark:text-gray-400 mb-3">
-          <div className="flex items-center gap-1">
-            <User className="w-3 h-3" />
-            <span>{post.author}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Calendar className="w-3 h-3" />
-            <span>{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Clock className="w-3 h-3" />
-            <span>{post.readTime}</span>
-          </div>
-        </div>
-
-        {/* Title */}
-        <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 group-hover:text-[#512feb] transition-colors duration-200">
-          {post.title}
-        </h3>
-
-        {/* Excerpt */}
-        <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3">
-          {post.excerpt}
-        </p>
-
-        {/* Read more link */}
-        <Link 
-          href={`/blog/${post.slug}`}
-          className="inline-flex items-center gap-2 text-[#512feb] font-semibold text-sm hover:gap-3 transition-all duration-200 group/link"
-        >
-          Read More
-          <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-200" />
-        </Link>
-      </div>
-    </motion.article>
-  );
-};
+import { Calendar, Clock, User, ArrowRight } from 'lucide-react';
+import { getBlogPosts } from '../data/blogData';
 
 const Blog = () => {
+  const blogPosts = getBlogPosts().slice(0, 3); // Show only 3 posts on homepage
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
   return (
-    <section id="blog" className="relative py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-white to-gray-50 dark:from-[#0d0d0d] dark:to-black overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-[#512feb]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-neon-cyan/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center px-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 bg-white/50 dark:bg-black/50 backdrop-blur-sm text-sm font-semibold text-gray-700 dark:text-gray-300 mb-6"
-          >
-            <BookOpen className="w-4 h-4 mr-2 text-[#512feb]" />
+    <section id="blog" className="py-10 md:py-20 bg-white dark:bg-[#0d0d0d] relative overflow-hidden">
+      {/* Background gradient for depth */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-black dark:to-gray-800 opacity-60"></div>
+      
+      <div className="container mx-auto px-4 md:px-12 relative z-10">
+        <div className="text-center max-w-4xl mx-auto mb-20">
+          <h2 className="text-2xl md:text-4xl lg:text-6xl font-bold text-black dark:text-white mb-2 md:mb-6 tracking-tight">
             Latest Insights & Updates
-          </motion.div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6"
-          >
-            Our Latest
-            <span className="text-[#512feb]"> Blog Posts</span>
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
-          >
-            Stay updated with the latest trends, insights, and best practices in web development, 
-            AI integration, and digital transformation.
-          </motion.p>
+          </h2>
+          <p className="text-base md:text-xl text-gray-700 dark:text-gray-300 font-normal leading-relaxed mb-4 md:mb-6">
+            Stay ahead with our latest thoughts on technology, development, and industry trends.
+          </p>
         </div>
 
-        {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12">
-          {blogPosts.slice(0, 3).map((post, index) => (
-            <BlogCard key={post.id} post={post} index={index} />
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-8">
+          {blogPosts.map((post, index) => (
+            <motion.div
+              key={post.slug}
+              className="relative h-full flex flex-col group bg-white/60 dark:bg-white/5 backdrop-blur-xl border border-[#e5e7eb] dark:border-white/30 rounded-2xl px-6 py-5 md:px-6 md:py-6 shadow-lg shadow-black/5 dark:shadow-black/30 hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-black/50 transition-all duration-200"
+              whileHover={{ y: -4, transition: { duration: 0.15 } }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: index * 0.1 }}
+            >
+              {/* Category Badge */}
+              <div className="flex-shrink-0 mb-4">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-[#512feb]/10 text-[#512feb] dark:bg-[#512feb]/20 dark:text-[#512feb]">
+                  {post.category}
+                </span>
+              </div>
+
+              {/* Content */}
+              <div className="flex-grow flex flex-col">
+                <h4 className="font-medium text-base md:text-lg tracking-tight text-black dark:text-white mb-2 md:mb-3 leading-tight line-clamp-2">
+                  {post.title}
+                </h4>
+                <p className="text-sm md:text-base text-[#4B5563] dark:text-[#A1A1AA] leading-relaxed font-normal mb-3 md:mb-4 line-clamp-3">
+                  {post.excerpt}
+                </p>
+              </div>
+
+              {/* Meta Information */}
+              <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-4">
+                <div className="flex items-center gap-1">
+                  <Calendar className="w-3 h-3" />
+                  <span>{formatDate(post.publishDate)}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Clock className="w-3 h-3" />
+                  <span>{post.readTime}</span>
+                </div>
+              </div>
+
+              {/* Author */}
+              <div className="flex items-center gap-2 mb-4">
+                <User className="w-3 h-3 text-gray-400" />
+                <span className="text-xs text-gray-500 dark:text-gray-400">{post.author}</span>
+              </div>
+
+              {/* Read More Link */}
+              <div className="mt-auto flex-shrink-0 pt-2 flex justify-center md:justify-start">
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="inline-flex items-center px-3 py-1.5 rounded-full border border-[#512feb] text-xs md:text-sm font-semibold text-[#512feb] dark:text-[#512feb] bg-transparent hover:bg-[#512feb] hover:text-white dark:hover:bg-[#512feb] dark:hover:text-white transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#512feb]/20"
+                  style={{ minWidth: 0 }}
+                >
+                  <span>Read More</span>
+                  <ArrowRight className="w-4 h-4 ml-1 transition-transform duration-200 group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </motion.div>
           ))}
         </div>
 
         {/* View All Posts Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
+        <div className="text-center mt-12">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-[#512feb] text-white font-semibold rounded-xl hover:bg-[#4a2bd4] transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-1"
+            className="inline-flex items-center px-6 py-3 rounded-lg border border-[#512feb] text-sm md:text-base font-semibold text-[#512feb] dark:text-[#512feb] bg-transparent hover:bg-[#512feb] hover:text-white dark:hover:bg-[#512feb] dark:hover:text-white transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#512feb]/20"
           >
-            View All Blog Posts
-            <ArrowRight className="w-5 h-5" />
+            <span>View All Posts</span>
+            <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
