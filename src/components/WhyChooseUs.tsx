@@ -87,7 +87,7 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="py-20 bg-white dark:bg-[#0d0d0d] relative overflow-hidden">
+    <section id="why-choose-us" className="py-20 bg-white dark:bg-[#0d0d0d] relative overflow-hidden">
       {/* Background gradient for depth */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-black dark:to-gray-800 opacity-60"></div>
       <div className="container mx-auto px-4 max-w-6xl relative z-10">

@@ -7,8 +7,8 @@ import Link from 'next/link';
 const navItems: { name: string; href: string }[] = [
   { name: 'Process', href: '#process' },
   { name: 'Services', href: '#services' },
-  { name: 'Benefits', href: '#benefits' },
-  { name: 'Plans', href: '#plans' },
+  { name: 'Benefits', href: '#why-choose-us' },
+  { name: 'Blog', href: '#blog' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -42,7 +42,10 @@ const Header = () => {
   };
   
   const handleNavClick = (href: string) => {
-    if (window.location.pathname !== '/') {
+    if (href === '#blog') {
+      // Navigate to blog page
+      window.location.href = '/blog';
+    } else if (window.location.pathname !== '/') {
       window.location.href = `/${href}`;
     } else {
       scrollToSection(href);
