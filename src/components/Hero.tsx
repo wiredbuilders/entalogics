@@ -1,156 +1,110 @@
-import React, { useEffect } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
-import { ArrowRight, Play, Code, Cloud, Database, Cpu, Shield, GitBranch, PenTool, Star, Chrome, Github, TerminalSquare, Globe, UserCheck, Lock, Clock, Wallet, Target } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Play, Globe, UserCheck, Lock, Shield } from 'lucide-react';
 import TrustBar from './TrustBar';
-import { getCalApi } from "@calcom/embed-react";
-import "@fontsource/pacifico";
+import Script from 'next/script';
 
-// Enhanced HeroVisual for right side
-const HeroVisual = () => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-100, 100], [10, -10]);
-  const rotateY = useTransform(x, [-100, 100], [-10, 10]);
+// Only the tech icon data for the tag cloud
+const techIcons = [
+  { src: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/brave.svg', alt: 'Brave', color: '#fb542b' },
+  { src: 'https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg', alt: 'Edge WebView' },
+  { src: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/webassembly.svg', alt: 'WebAssembly' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg', alt: 'Chromium' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/electron/electron-original.svg', alt: 'Electron' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', alt: 'React' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original-wordmark.svg', alt: 'Next.js' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', alt: 'TypeScript' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg', alt: 'Vue.js' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg', alt: 'Angular' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg', alt: 'Tailwind' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg', alt: 'Astro' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/qwik/qwik-original.svg', alt: 'Qwik' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg', alt: 'Flutter' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg', alt: 'Swift' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg', alt: 'Kotlin' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg', alt: 'MAUI' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tauri/tauri-original.svg', alt: 'Tauri' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg', alt: 'C++' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg', alt: 'C#/.NET' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', alt: 'Python' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', alt: 'Node.js' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg', alt: 'Rust' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg', alt: 'GraphQL' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg', alt: 'Firebase' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', alt: 'Docker' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg', alt: 'Supabase' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg', alt: 'AWS' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg', alt: 'Azure' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg', alt: 'JavaScript' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg', alt: 'HTML5' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg', alt: 'CSS3' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', alt: 'Git' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', alt: 'GitHub' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg', alt: 'Redux' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg', alt: 'SASS' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg', alt: 'Bootstrap' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', alt: 'MongoDB' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', alt: 'MySQL' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', alt: 'PostgreSQL' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', alt: 'Express.js' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg', alt: 'Linux' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg', alt: 'Nginx' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypress/cypress-original.svg', alt: 'Cypress' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg', alt: 'Jest' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg', alt: 'Vercel' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg', alt: 'Netlify' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/digitalocean/digitalocean-original.svg', alt: 'DigitalOcean' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg', alt: 'Heroku' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg', alt: 'Figma' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg', alt: 'Slack' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg', alt: 'Trello' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg', alt: 'Jira' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bitbucket/bitbucket-original.svg', alt: 'Bitbucket' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg', alt: 'Webpack' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/babel/babel-original.svg', alt: 'Babel' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/yarn/yarn-original.svg', alt: 'Yarn' },
+  { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg', alt: 'npm' },
+];
 
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = event.clientX - rect.left;
-    const mouseY = event.clientY - rect.top;
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-    x.set(xPct * 100);
-    y.set(yPct * 100);
-  };
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.div
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transformStyle: 'preserve-3d',
-        perspective: 800,
-      }}
-      className="relative w-full h-full flex items-center justify-center"
-    >
-      <motion.div
-        style={{ rotateX, rotateY }}
-        className="relative w-80 h-80 md:w-96 md:h-96 flex flex-col items-center justify-center"
-      >
-        {/* Soft glow background */}
-        <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/10 via-black/10 to-white/10 dark:from-black/20 dark:via-white/10 dark:to-black/20 blur-2xl" />
-        {/* Main Card */}
-        <motion.div
-          className="relative z-10 bg-white/70 dark:bg-black/60 backdrop-blur-2xl rounded-3xl border border-black/10 dark:border-gray-700 shadow-2xl px-8 py-7 flex flex-col items-center min-w-[240px]"
-          initial={{ scale: 0.98, y: 10 }}
-          animate={{ scale: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 120, damping: 12 }}
-        >
-          {/* Top badges */}
-          <div className="flex gap-2 mb-3">
-            <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-black/10 dark:bg-white/10 text-xs font-semibold text-black dark:text-white border border-black/10 dark:border-white/10">
-              <Star className="w-4 h-4 text-yellow-400" /> Success Rate <span className="ml-1 text-green-600 dark:text-green-400 font-mono">99.9%</span>
-            </div>
-            <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-black/10 dark:bg-white/10 text-xs font-semibold text-black dark:text-white border border-black/10 dark:border-white/10">
-              <Cpu className="w-4 h-4 text-pink-600 dark:text-pink-400" /> Built with Logic
-            </div>
-          </div>
-          {/* Main Title */}
-          <h3 className="text-2xl font-extrabold text-black dark:text-white tracking-wide mb-1">Entalogics</h3>
-          {/* Subtitle */}
-          <p className="text-xs text-black/60 dark:text-white/70 font-mono mb-2">Full-Stack Agency</p>
-          {/* Tech icons row */}
-          <div className="flex gap-4 mt-2 flex-wrap justify-center">
-            <Code className="w-7 h-7 text-indigo-600 dark:text-indigo-400 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" />
-            <Cloud className="w-7 h-7 text-cyan-600 dark:text-cyan-400 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" />
-            <Shield className="w-7 h-7 text-emerald-600 dark:text-emerald-400 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" />
-            <Chrome className="w-7 h-7 text-blue-500 dark:text-blue-400 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" />
-            <Github className="w-7 h-7 text-gray-800 dark:text-gray-200 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" />
-            <TerminalSquare className="w-7 h-7 text-blue-700 dark:text-blue-300 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" />
-            <Cpu className="w-7 h-7 text-purple-600 dark:text-purple-400 bg-white/60 dark:bg-black/60 rounded-xl p-1.5 shadow" />
-          </div>
-          {/* Highlight Snaps */}
-          <motion.div
-            className="w-full mt-5"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.13 } }
-            }}
-          >
-            <div className="grid grid-cols-2 gap-x-3 gap-y-2 text-xs text-gray-500 dark:text-gray-400 opacity-80">
-              <motion.div
-                className="flex items-center gap-2"
-                variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } }}
-              >
-                <Cpu className="w-4 h-4 opacity-60" /> Full-Stack Expertise
-              </motion.div>
-              <motion.div
-                className="flex items-center gap-2"
-                variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } }}
-              >
-                <Clock className="w-4 h-4 opacity-60" /> 24/7 Client Support
-              </motion.div>
-              <motion.div
-                className="flex items-center gap-2"
-                variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } }}
-              >
-                <Wallet className="w-4 h-4 opacity-60" /> Transparent Pricing
-              </motion.div>
-              <motion.div
-                className="flex items-center gap-2"
-                variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } }}
-              >
-                <Globe className="w-4 h-4 opacity-60" /> Cross-Industry Experience
-              </motion.div>
-              <motion.div
-                className="flex items-center gap-2 col-span-2"
-                variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } }}
-              >
-                <Target className="w-4 h-4 opacity-60" /> Results-Focused
-              </motion.div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </motion.div>
-    </motion.div>
-  );
+const handleTagCanvasInit = () => {
+  if (typeof window !== 'undefined' && window.TagCanvas) {
+    try {
+      const options = {
+        reverse: true,
+        maxSpeed: 0.02,
+        weight: true,
+        wheelZoom: true,
+        freezeActive: true,
+        shuffleTags: true,
+        initial: [0.2, -0.2],
+        dragControl: true,
+        zoom: 0.9,
+        pinchZoom: true,
+        freezeDecel: true,
+        fadeIn: 800,
+        clickToFront: 600,
+        shape: 'sphere',
+        imageScale: 0.3,
+        lock: 'xy',
+        outlineMethod: 'none',
+      };
+      console.log('TagCanvas options:', options);
+      window.TagCanvas.Start('tagcanvas', 'taglist', options);
+    } catch (e) {
+      // TagCanvas failed to load
+    }
+  }
 };
 
 const Hero = () => {
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({"namespace":"15min"});
-      cal("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
-    })();
-  }, []);
-
   return (
     <>
       <section id="home" className="relative w-full bg-white dark:bg-[#0d0d0d] overflow-hidden flex flex-col md:flex-row items-center justify-center py-0 md:py-14 px-4 md:px-12">
+        {/* TagCanvas Script */}
+        <Script src="/assets/tagcanvas.min.js" strategy="afterInteractive" onLoad={handleTagCanvasInit} />
         {/* Background gradient for depth in dark mode only */}
         <div className="absolute inset-0 hidden dark:block bg-gradient-to-br from-gray-900 via-black to-gray-800 opacity-60"></div>
-        {/* Subtle animated star/particle background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <svg className="w-full h-full" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g opacity="0.18">
-              <circle cx="200" cy="100" r="2" fill="white" />
-              <circle cx="400" cy="300" r="1.5" fill="white" />
-              <circle cx="800" cy="200" r="2.5" fill="white" />
-              <circle cx="1200" cy="400" r="1.2" fill="white" />
-              <circle cx="1000" cy="600" r="2" fill="white" />
-              <circle cx="300" cy="700" r="1.7" fill="white" />
-              <circle cx="600" cy="500" r="1.3" fill="white" />
-              <circle cx="1300" cy="150" r="1.8" fill="white" />
-            </g>
-          </svg>
-        </div>
+        {/* TagCanvas 3D Tag Cloud */}
         <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-stretch justify-center gap-6 md:gap-0 px-0 sm:px-4 md:px-12 min-h-0">
           {/* Left: Content */}
           <div className="flex-1 flex flex-col justify-between md:justify-center md:items-start items-center text-center md:text-left md:pr-10 h-full pt-20 md:pt-0 pb-2">
@@ -167,25 +121,10 @@ const Hero = () => {
               </span>
             </div>
           {/* Main heading */}
-            <h1 className="text-[clamp(1.5rem,3.5vw,2.2rem)] font-bold text-black dark:text-white leading-snug mb-4 md:mb-6 tracking-tight" style={{ fontFamily: "'Poppins', 'Montserrat', sans-serif", lineHeight: 1.22 }}>
+            <h1 className="text-[clamp(1.8rem,5vw,2.5rem)] font-extrabold text-black dark:text-white leading-tight mb-4 md:mb-6 tracking-tight" style={{ fontFamily: "'Poppins', 'Montserrat', sans-serif" }}>
               <span className="block">Entalogics Gives Your</span>
-              <span className="block">Raw Tech Idea a Life</span>
-              <span className="block mt-2">
-                <span style={{ marginRight: 8, fontWeight: 600, fontSize: '0.95em' }}>— Built With</span>
-                <span
-                  style={{
-                    fontFamily: 'Pacifico, cursive',
-                    color: '#512feb',
-                    fontWeight: 700,
-                    fontSize: '1.05em',
-                    letterSpacing: '0.5px',
-                    verticalAlign: 'middle',
-                  }}
-                  className="inline-block align-middle"
-                >
-                  Logic
-                </span>
-              </span>
+              <span className="block">Raw Tech Idea a Life—</span>
+              <span className="block">Built With <span style={{ fontFamily: 'Pacifico, cursive' }} className="text-[#512feb]">Logic</span></span>
             </h1>
           {/* Subtitle */}
             <p className="text-[1.125rem] text-black/80 dark:text-white/80 mb-3 md:mb-5 max-w-xl mx-auto md:mx-0 leading-snug font-medium pt-1" style={{ fontFamily: "'Roboto', sans-serif" }}>
@@ -197,12 +136,7 @@ const Hero = () => {
           </p>
           {/* Buttons */}
             <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-3 mb-2 md:mb-4 w-full md:w-auto">
-              <button 
-                data-cal-namespace="15min"
-                data-cal-link="entalogics/15min"
-                data-cal-config='{"layout":"month_view","theme":"auto"}'
-                className="w-full md:w-auto px-5 md:px-6 py-4 md:py-3 font-semibold rounded-xl shadow-lg transition-all duration-150 text-base flex items-center justify-center text-center gap-2 bg-[#512feb] text-white border-2 border-[#512feb] hover:bg-[#4a2bd4] focus:outline-none focus:ring-2 focus:ring-[#512feb] dark:bg-[#512feb] dark:text-white dark:border-[#512feb] dark:hover:bg-[#4a2bd4] dark:focus:ring-[#512feb]"
-              >
+              <button className="w-full md:w-auto px-5 md:px-6 py-4 md:py-3 font-semibold rounded-xl shadow-lg transition-all duration-150 text-base flex items-center justify-center text-center gap-2 bg-[#512feb] text-white border-2 border-[#512feb] hover:bg-[#4a2bd4] focus:outline-none focus:ring-2 focus:ring-[#512feb] dark:bg-[#512feb] dark:text-white dark:border-[#512feb] dark:hover:bg-[#4a2bd4] dark:focus:ring-[#512feb]">
                Schedule a Quick Call <ArrowRight className="w-5 h-5" />
               </button>
               <button className="w-full md:w-auto px-5 md:px-6 py-4 md:py-3 font-semibold rounded-xl border-2 border-[#512feb] shadow-lg transition-all duration-150 text-base flex items-center justify-center text-center gap-2 bg-white text-[#512feb] hover:bg-gray-50 hover:shadow-[0_0_12px_2px_rgba(81,47,235,0.10)] focus:outline-none focus:ring-2 focus:ring-[#512feb] dark:bg-transparent dark:text-[#512feb] dark:border-[#512feb] dark:hover:bg-[#512feb]/10 dark:focus:ring-[#512feb]">
@@ -227,9 +161,32 @@ const Hero = () => {
               <span>Powering 33+ AI & Apps startups to hit $10M+ ARR</span>
             </motion.div>
             </div>
-          {/* Right: Visual Mockup */}
-          <div className="hidden md:flex flex-1 items-center justify-end min-h-[180px] xs:min-h-[220px] sm:min-h-[300px] md:min-h-0 mt-4 md:mt-0">
-            <HeroVisual />
+          {/* Right: TagCanvas Cloud */}
+          <div className="flex-1 flex items-center justify-center min-h-[320px]">
+            <div className="relative w-[500px] h-[500px] md:w-[500px] md:h-[500px]">
+              <canvas id="tagcanvas" width="500" height="500" className="w-full h-full" />
+              <ul id="taglist" style={{ display: 'none' }}>
+                {techIcons.map((icon, i) => (
+                  <li key={i}>
+                    <a href="#" tabIndex={-1}>
+                      <img
+                        src={icon.src}
+                        alt={icon.alt}
+                        style={{
+                          width: 32,
+                          height: 32,
+                          borderRadius: '30%',
+                          background: '#fff',
+                          padding: 1,
+                          boxShadow: '0 1px 2px rgba(0,0,0,0.07)',
+                          filter: icon.alt === 'Brave' ? 'invert(49%) sepia(97%) saturate(7491%) hue-rotate(1deg) brightness(97%) contrast(101%)' : undefined
+                        }}
+                      />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -237,5 +194,11 @@ const Hero = () => {
     </>
   );
 };
+
+declare global {
+  interface Window {
+    TagCanvas?: any;
+  }
+}
 
 export default Hero; 
