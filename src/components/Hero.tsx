@@ -157,7 +157,7 @@ const Hero = () => {
             </div>
             </div>
           {/* Right: TagCanvas Cloud */}
-          <div className="flex-1 flex flex-col items-center justify-center min-h-[320px]">
+          <div className="flex-1 flex flex-col items-center justify-center min-h-[320px] hidden md:flex">
             <div className="relative w-[400px] h-[400px] md:w-[400px] md:h-[400px]">
               <canvas id="tagcanvas" width="400" height="400" className="w-full h-full" />
               <ul id="taglist" style={{ display: 'none' }}>
@@ -183,7 +183,7 @@ const Hero = () => {
               </ul>
             </div>
             {/* Social Proof Snippet directly below TagCanvas, perfectly aligned */}
-            <motion.div whileHover={{ scale: 1.06 }} transition={{ duration: 0.1 }} className="flex items-center justify-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-2 mb-1 md:mt-3 md:mb-2 cursor-pointer select-none text-center whitespace-nowrap w-full">
+            <motion.div whileHover={{ scale: 1.06 }} transition={{ duration: 0.1 }} className="flex items-center justify-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-2 mb-1 md:mt-3 md:mb-2 cursor-pointer select-none text-center whitespace-nowrap w-full hidden md:flex">
               <Globe className="w-4 h-4 text-neon-cyan" />
               <span>Powering 33+ AI & Apps startups to hit $10M+ ARR</span>
             </motion.div>
