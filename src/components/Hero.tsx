@@ -78,7 +78,7 @@ const handleTagCanvasInit = () => {
         shuffleTags: true,
         initial: [0.2, -0.2],
         dragControl: true,
-        zoom: 0.9,
+        zoom: 1.05,
         pinchZoom: true,
         freezeDecel: true,
         fadeIn: 800,
@@ -155,16 +155,11 @@ const Hero = () => {
                 <Shield className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-600 dark:text-purple-400 drop-shadow-[0_1px_2px_rgba(168,85,247,0.18)]" />Built by Experts
               </motion.span>
             </div>
-            {/* Social Proof Snippet */}
-            <motion.div whileHover={{ scale: 1.06 }} transition={{ duration: 0.1 }} className="flex items-center justify-center md:justify-start gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-2 mb-1 md:mt-3 md:mb-2 cursor-pointer select-none text-center md:text-left whitespace-nowrap w-full overflow-x-auto">
-              <Globe className="w-4 h-4 text-neon-cyan" />
-              <span>Powering 33+ AI & Apps startups to hit $10M+ ARR</span>
-            </motion.div>
             </div>
           {/* Right: TagCanvas Cloud */}
-          <div className="flex-1 flex items-center justify-center min-h-[320px]">
-            <div className="relative w-[500px] h-[500px] md:w-[500px] md:h-[500px]">
-              <canvas id="tagcanvas" width="500" height="500" className="w-full h-full" />
+          <div className="flex-1 flex flex-col items-center justify-center min-h-[320px]">
+            <div className="relative w-[400px] h-[400px] md:w-[400px] md:h-[400px]">
+              <canvas id="tagcanvas" width="400" height="400" className="w-full h-full" />
               <ul id="taglist" style={{ display: 'none' }}>
                 {techIcons.map((icon, i) => (
                   <li key={i}>
@@ -187,6 +182,11 @@ const Hero = () => {
                 ))}
               </ul>
             </div>
+            {/* Social Proof Snippet directly below TagCanvas, perfectly aligned */}
+            <motion.div whileHover={{ scale: 1.06 }} transition={{ duration: 0.1 }} className="flex items-center justify-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-2 mb-1 md:mt-3 md:mb-2 cursor-pointer select-none text-center whitespace-nowrap w-full">
+              <Globe className="w-4 h-4 text-neon-cyan" />
+              <span>Powering 33+ AI & Apps startups to hit $10M+ ARR</span>
+            </motion.div>
           </div>
         </div>
       </section>
