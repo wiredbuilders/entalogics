@@ -191,7 +191,7 @@
 .dark ::selection {
   background: rgba(255, 107, 107, 0.2);
   color: inherit;
-}
+} 
 
 /* Blog prose styles */
 .prose {
@@ -645,4 +645,27 @@
 
 .dark .prose tbody td {
   color: #d1d5db;
+}
+
+/* Remove hover/focus/active effect from TagCanvas sphere icons */
+#taglist a,
+#taglist a:focus,
+#taglist a:active,
+#taglist a:hover,
+#taglist .tagcanvas_active,
+#taglist .active {
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border: none !important;
+}
+#taglist img:focus,
+#taglist img:active,
+#taglist img:hover,
+#taglist .tagcanvas_active img,
+#taglist .active img {
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border: none !important;
 } 
