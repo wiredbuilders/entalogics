@@ -73,7 +73,7 @@ const handleTagCanvasInit = () => {
         reverse: true,
         maxSpeed: 0.02,
         weight: true,
-        wheelZoom: true,
+        wheelZoom: false,
         freezeActive: true,
         shuffleTags: true,
         initial: [0.2, -0.2],
