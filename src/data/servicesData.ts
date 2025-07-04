@@ -26,7 +26,7 @@ export const servicesData = {
     description: 'Complete SaaS solutions built for growth.',
     features: [
       ['Multi-tenant logic', 'API integrations'],
-      ['Growth-ready foundations', 'Secure infrastructure'],
+      ['Growth-ready firms', 'Secure infrastructure'],
       ['Automated billing', 'User onboarding flows']
     ],
     process: [
@@ -44,7 +44,7 @@ export const servicesData = {
     tagline: 'We develop AI-native tools and workflows — from custom LLM apps to agent-powered dashboards.',
     description: 'AI solutions that drive real business value.',
     features: [
-      ['Agent-powered dashboards', 'OpenAI, DeepSeek'],
+      ['Agent dashboards', 'OpenAI, DeepSeek'],
       ['Full AI app lifecycle', 'Prompt engineering'],
       ['Custom LLM workflows', 'Vector DBs, LangChain']
     ],
@@ -64,7 +64,7 @@ export const servicesData = {
     description: 'Modern web applications that drive results.',
     features: [
       ['Landing pages, portals', 'And scale'],
-      ['Dashboards, built for speed', 'API connectivity'],
+      ['Dashboards, Admin ', 'API connectivity'],
       ['Responsive design', 'SEO optimization']
     ],
     process: [
@@ -120,7 +120,7 @@ export const servicesData = {
     tagline: 'We create intuitive, clean interfaces that convert. From Figma to functional.',
     description: 'Design that converts visitors into customers.',
     features: [
-      ['Wireframes & prototypes', 'User flows'],
+      ['Wireframes & prototype', 'User flows'],
       ['UX-first thinking', 'Component libraries'],
       ['Design systems', 'Accessibility audits']
     ],
@@ -139,7 +139,7 @@ export const servicesData = {
     tagline: 'We build high-performance desktop apps with deep OS integrations… they run smooth on Win, Mac & Linux…',
     description: 'Desktop applications that feel native.',
     features: [
-      ['Cross-platform development', 'Enterprize-ready'],
+      ['Cross-platform Built', 'Enterprize-ready'],
       ['Native OS integration', 'Custom tooling'],
       ['High performance', 'Seamless updates']
     ],
@@ -159,7 +159,7 @@ export const servicesData = {
     description: 'Keep your software running smoothly.',
     features: [
       ['24/7 monitoring', 'Security updates'],
-      ['Performance optimization', 'Bug fixes'],
+      ['Performance focused', 'Bug fixes'],
       ['Feature enhancements', 'Proactive support']
     ],
     process: [
@@ -177,7 +177,7 @@ export const servicesData = {
     tagline: 'We deliver decentralized trading platforms for modern markets… powered by smart contract tech & decenta…',
     description: 'Decentralized trading solutions for the future.',
     features: [
-      ['Smart contract integration', 'Security audits'],
+      ['Contract integration', 'Security audits'],
       ['Real-time market data', 'Wallet connectivity'],
       ['Decentralized protocols', 'Custom trading UIs']
     ],

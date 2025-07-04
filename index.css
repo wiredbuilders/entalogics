@@ -10,18 +10,23 @@
   }
   
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Sora', system-ui, sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    font-weight: 400;
   }
 
   /* Fluid typography for headings */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', system-ui, sans-serif;
-    font-weight: 700;
+    font-family: 'Sora', system-ui, sans-serif;
+    font-weight: 800;
     line-height: 1.2;
+  }
+
+  h2, h3, h4, h5, h6 {
+    font-weight: 600;
   }
 
   /* Responsive container */

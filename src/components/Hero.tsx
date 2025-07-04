@@ -121,17 +121,17 @@ const Hero = () => {
               </span>
             </div>
           {/* Main heading */}
-            <h1 className="text-[clamp(1.8rem,5vw,2.5rem)] font-extrabold text-black dark:text-white leading-tight mb-4 md:mb-6 tracking-tight" style={{ fontFamily: "'Poppins', 'Montserrat', sans-serif" }}>
+            <h1 className="text-[clamp(1.8rem,5vw,2.5rem)] font-extrabold text-black dark:text-white leading-tight mb-4 md:mb-6 tracking-tight" style={{ fontFamily: "'Sora', sans-serif" }}>
               <span className="block">Entalogics Gives Your</span>
               <span className="block">Raw Tech Idea a Life—</span>
-              <span className="block">Built With <span style={{ fontFamily: 'Pacifico, cursive' }} className="text-[#512feb]">Logic</span></span>
+              <span className="block">Built With <span style={{ fontFamily: 'Sora, sans-serif' }} className="text-[#512feb]">Logic</span></span>
             </h1>
           {/* Subtitle */}
-            <p className="text-[1.125rem] text-black/80 dark:text-white/80 mb-3 md:mb-5 max-w-xl mx-auto md:mx-0 leading-snug font-medium pt-1" style={{ fontFamily: "'Roboto', sans-serif" }}>
+            <p className="text-[1.125rem] text-black/80 dark:text-white/80 mb-3 md:mb-5 max-w-xl mx-auto md:mx-0 leading-snug font-medium pt-1" style={{ fontFamily: "'Sora', sans-serif" }}>
             We're your full-stack development partner for modern startups and scaleups. From custom browsers to SaaS apps—designed, engineered, and launched with clarity.
           </p>
           {/* Description */}
-            <p className="text-base text-black/60 dark:text-white/60 mb-3 md:mb-5 max-w-xl mx-auto md:mx-0 leading-normal font-normal pb-1" style={{ fontFamily: "'Roboto', sans-serif" }}>
+            <p className="text-base text-black/60 dark:text-white/60 mb-3 md:mb-5 max-w-xl mx-auto md:mx-0 leading-normal font-normal pb-1" style={{ fontFamily: "'Sora', sans-serif" }}>
             Whether you're building an AI tool, browser platform, or custom enterprise app — we become your extended tech team. From MVP to V1 and beyond — we build what matters.
           </p>
           {/* Buttons */}

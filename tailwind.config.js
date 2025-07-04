@@ -26,8 +26,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
-        'display': ['Poppins', 'system-ui', 'sans-serif'],
+        'sans': ['Sora', 'system-ui', 'sans-serif'],
+        'display': ['Sora', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         'xs': ['clamp(0.65rem, 1vw, 0.75rem)', { lineHeight: '1.4' }],

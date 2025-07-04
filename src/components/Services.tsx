@@ -22,13 +22,14 @@ interface ServiceCardProps {
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   return (
     <motion.div
-      className="relative h-full flex flex-col group bg-white/60 dark:bg-white/5 backdrop-blur-xl border border-[#e5e7eb] dark:border-white/30 rounded-2xl px-6 py-5 md:px-6 md:py-6 shadow-lg shadow-black/5 dark:shadow-black/30 hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-black/50 transition-all duration-200"
+      className="relative h-full min-h-[340px] flex flex-col group bg-white/60 dark:bg-white/5 backdrop-blur-xl border border-[#e5e7eb] dark:border-white/30 rounded-2xl px-8 py-7 shadow-lg shadow-black/5 dark:shadow-black/30 hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-black/50 transition-all duration-200"
       whileHover={{ y: -4, transition: { duration: 0.15 } }}
+      style={{ boxSizing: 'border-box' }}
     >
       <div className="flex-shrink-0 mb-4 md:mb-6">
-        <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-xl text-[#512feb] dark:text-[#512feb]">
+        <div className="w-10 h-10 flex items-center justify-center rounded-xl text-[#512feb] dark:text-[#512feb]">
           {React.createElement(service.icon, {
-            className: 'w-6 h-6 md:w-7 md:h-7',
+            className: 'w-7 h-7',
             stroke: 'currentColor',
             strokeWidth: 2,
             color: 'inherit',
@@ -37,11 +38,11 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         </div>
       </div>
       <div className="flex-grow flex flex-col">
-        <h4 className="font-medium text-base md:text-lg tracking-tight text-black dark:text-white mb-2 md:mb-3 leading-tight">{service.title}</h4>
-        <p className="text-sm md:text-base text-[#4B5563] dark:text-[#A1A1AA] leading-relaxed font-normal mb-3 md:mb-4">{service.tagline}</p>
+        <h4 className="font-semibold text-lg tracking-tight text-black dark:text-white mb-2 leading-tight">{service.title}</h4>
+        <p className="text-base text-[#4B5563] dark:text-[#A1A1AA] leading-relaxed font-normal mb-4">{service.tagline}</p>
         {service.features && (
           Array.isArray(service.features[0]) ? (
-            <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-1">
+            <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1">
               {service.features.flat().map((feature, idx, arr) => (
                 feature ? (
                   <div key={idx} className="flex items-center gap-2 min-w-[120px]">
@@ -52,7 +53,6 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
                   <div key={idx} />
                 )
               ))}
-              {/* If odd number of features, add an empty cell for alignment */}
               {service.features.flat().length % 2 !== 0 && <div />}
             </div>
           ) : (
@@ -71,7 +71,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         {service.slug ? (
           <Link
             href={`/services/${service.slug}`}
-            className="inline-flex items-center px-3 py-1.5 rounded-full border border-[#512feb] text-xs md:text-sm font-semibold text-[#512feb] dark:text-[#512feb] bg-transparent hover:bg-[#512feb] hover:text-white dark:hover:bg-[#512feb] dark:hover:text-white transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#512feb]/20"
+            className="inline-flex items-center px-4 py-2 rounded-full border border-[#512feb] text-sm font-semibold text-[#512feb] dark:text-[#512feb] bg-transparent hover:bg-[#512feb] hover:text-white dark:hover:bg-[#512feb] dark:hover:text-white transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#512feb]/20"
             style={{ minWidth: 0 }}
           >
             <span>Learn More</span>
@@ -99,9 +99,11 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-8">
           {servicesList.map((service, index) => (
-            <ServiceCard key={service.slug} service={service} index={index} />
+            <div className="h-full" key={service.slug}>
+              <ServiceCard service={service} index={index} />
+            </div>
           ))}
         </div>
       </div>
